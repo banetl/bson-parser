@@ -47,7 +47,6 @@ namespace bson
             { '\x06', BaseElement::Type::undef },
             { '\x07', BaseElement::Type::oid },
             { '\x08', BaseElement::Type::bf },
-        //  { '\x08', BaseElement::Type::bt },
             { '\x09', BaseElement::Type::date },
             { '\x0A', BaseElement::Type::null },
             { '\x0B', BaseElement::Type::regex },
@@ -116,6 +115,8 @@ namespace bson
         case BaseElement::Type::bf:
         {
             auto boolean = data_[index_++];
+            if (boolean != '\x00' && boolean != '\x01')
+                throw std::runtime_error("Bad bson file input");
             auto elt_type = boolean ? BaseElement::Type::bt : BaseElement::Type::bf;
             return std::make_shared<BaseElement>(BaseElement(elt_type, key));
         }

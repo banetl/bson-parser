@@ -13,6 +13,8 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    try
+    {
     // open file in binary mode && set the input position indicator to the end
     std::ifstream file(argv[1], std::ios::binary | std::ios::ate);
     if (!file.is_open())
@@ -32,6 +34,11 @@ int main(int argc, char** argv)
     bson::Parser parser(buffer);
     auto document = parser.parse();
     document->dump(std::cout);
+    } catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+        return 2;
+    }
 
     return 0;
 }

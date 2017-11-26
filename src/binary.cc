@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "binary.hh"
+#include "utils.hh"
 
 namespace bson
 {
@@ -17,9 +18,9 @@ namespace bson
 
     std::ostream& Binary::dump(std::ostream& ostr) const
     {
-        ostr << "Binary:" << std::endl
-            << "\t" "length: " << length_ << std::endl
-            << "\t" "type:" << get_type_string(type_) << std::endl;
+        ostr << "Binary:" << utils::incendl
+            << "length: " << length_ << utils::iendl
+            << "type:" << get_type_string(type_) << utils::decendl;
         return ostr;
     }
 

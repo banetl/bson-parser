@@ -1,5 +1,5 @@
 CXXFLAGS=-std=c++17 -Wall -Wextra -pedantic
-OBJS=base-element.o binary.o binstring.o codew.o document.o parser.o
+OBJS=base-element.o binary.o binstring.o codew.o document.o parser.o utils.o
 
 PATHOBJS=$(addprefix src/, $(OBJS))
 

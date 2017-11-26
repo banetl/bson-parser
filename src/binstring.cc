@@ -2,6 +2,7 @@
 #include <string>
 
 #include "binstring.hh"
+#include "utils.hh"
 
 namespace bson
 {
@@ -18,7 +19,7 @@ namespace bson
         ostr << "Binary String:"
              << "\t" "length: "
              << length_
-             << std::endl;
+             << utils::iendl;
         return ostr;
     }
 

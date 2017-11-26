@@ -3,6 +3,7 @@
 
 #include "binstring.hh"
 #include "codew.hh"
+#include "utils.hh"
 
 namespace bson
 {
@@ -16,10 +17,10 @@ namespace bson
 
     std::ostream& CodeW::dump(std::ostream& ostr) const
     {
-        ostr << "Code w/ scope: " << std::endl
-             << "\t" "length: " << length_ << std::endl
-             << "\t" "Binary string: " << *str_ << std::endl
-             << "\t" "Document: " << *doc_ << std::endl;
+        ostr << "Code w/ scope: " << utils::incendl
+             << "length: " << length_ << utils::iendl
+             << "Binary string: " << *str_ << utils::iendl
+             << "Document: " << *doc_ << utils::decendl;
         return ostr;
     }
 

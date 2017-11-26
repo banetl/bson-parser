@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "document.hh"
+#include "utils.hh"
 
 namespace bson
 {
@@ -16,13 +17,15 @@ namespace bson
 
     std::ostream& Document::dump(std::ostream& ostr) const
     {
-        ostr << "Document:" << std::endl
-             << "\t" "length: " << length_ << std::endl
-             << "\t" "content: " << std::endl;
+        ostr << "Document:" << utils::incendl
+             << "length: " << length_ << utils::iendl
+             << "content: " << utils::incendl;
 
         for (auto i : list_)
-            ostr << "\t\t" << *i << std::endl;
-
+            ostr << *i << utils::iendl;
+        // Reset indentation after the document
+        utils::indent(ostr) -= 2;
+        ostr << utils::iendl;
         return ostr;
     }
 

@@ -2,6 +2,7 @@
 #include <string>
 
 #include "base-element.hh"
+#include "utils.hh"
 
 namespace bson
 {
@@ -45,13 +46,11 @@ namespace bson
 
     std::ostream& BaseElement::dump(std::ostream& ostr) const
     {
-        ostr << "Element:" << std::endl
-             << "\t" "type: " << this->get_type_string(type_) << std::endl
-             << "\t" "key: " << key_ << std::endl;
+        ostr << "Element:" << utils::iendl
+             << "type: " << this->get_type_string(type_) << utils::iendl
+             << "key: " << key_ << utils::iendl;
         return ostr;
     }
-
-
 
     std::ostream& operator<<(std::ostream& ostr, const BaseElement& elt)
     {

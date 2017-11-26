@@ -1,4 +1,4 @@
-# bson parser
+# BSON parser
 
 ## The project
 
@@ -40,7 +40,7 @@ The usage is:
 ./bson-parser file.bson
 ```
 
-Some bson files are provided in the sample folder. You can use them to test
+Some bson files are provided in the ``samples`` folder. You can use them to test
 the program.
 
 ### Todo
@@ -68,10 +68,6 @@ improvement could be to store them in the more restricive std::unique_ptr.
 This improvement however has to take into account the moment when the memory
 is allocated. The code has to be refactored to allocate in the class
 constructors.
-
-### Add option to recreate the bson from the AST
-
-It would be convenient to be able to do the reverse transformation.
 
 ## Author
 
