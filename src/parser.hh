@@ -4,21 +4,27 @@
 #include <vector>
 #include <variant>
 
+#include "base-element.hh"
+#include "binary.hh"
+#include "binstring.hh"
+#include "codew.hh"
+#include "document.hh"
+#include "element.hh"
+
 namespace bson
 {
 
-
     /* Possible values of the Element template:
      * - double
-     * - bson::BinString
-     * - bson::Document
-     * - bson::Binary
+     * - std::shared_ptr<bson::BinString>
+     * - std::shared_ptr<bson::Document>
+     * - std::shared_ptr<bson::Binary>
      * - std::array<12, uint8_t>
      * - uint8_t
      * - int64_t
      * - std::pair<std::string, std::string>
-     * - std::pair<bson::BinString, std::array<12, uint8_t>>
-     * - bson::CodeW
+     * - std::pair<std::shared_ptr<bson::BinString>, std::array<12, uint8_t>>
+     * - std::shared_ptr<bson::CodeW>
      * - int32_t
      * - uint64_t
      * - long double
