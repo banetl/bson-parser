@@ -27,6 +27,8 @@ namespace bson
         if constexpr (std::is_same<id_type, value>::value)
         {
             ostr << "value: ";
+            // The +i is a hack as the unitary operator implicitely
+            // converts to int (operand undergoes integer promotion)
             for (auto i : val_)
                 ostr << "\\x" << std::hex << +i;
         }

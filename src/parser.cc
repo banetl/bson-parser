@@ -73,6 +73,10 @@ namespace bson
         auto elt_type = get_elt_type(type);
         const std::string key = parse_cstring();
 
+        // This switch case is ugly. It could be improved by
+        // making a class hierarchy for parsing and playing around
+        // polymorphism however I feel it is a little bit overkill
+        // for this simple program.
         switch (elt_type)
         {
         case BaseElement::Type::bfp:
