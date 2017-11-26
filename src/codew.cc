@@ -6,11 +6,12 @@
 
 namespace bson
 {
-    CodeW::CodeW(int32_t length, const BinString& str, const Document& doc)
-        : length_(length)
+    CodeW::CodeW(int32_t length, std::shared_ptr<BinString> str,
+                 std::shared_ptr<Document> doc)
+        : length_(length),
+        str_(str),
+        doc_(doc)
     {
-        str_ = std::make_unique<BinString>(str);
-        doc_ = std::make_unique<Document>(doc);
     }
 
     std::ostream& CodeW::dump(std::ostream& ostr) const

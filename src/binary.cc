@@ -8,7 +8,7 @@ namespace bson
 {
 
     Binary::Binary(int32_t number, Binary::Type type,
-                   const std::vector<uint8_t>& data)
+                   const std::basic_string<uint8_t>& data)
         : length_(number),
           type_(type),
           data_(data)

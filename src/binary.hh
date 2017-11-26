@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 
 namespace bson
 {
@@ -24,11 +23,11 @@ namespace bson
 
     public:
         Binary(int32_t number, Binary::Type type,
-               const std::vector<uint8_t>& data);
+               const std::basic_string<uint8_t>& data);
         std::ostream& dump(std::ostream& stream) const;
         int32_t length_get() const;
         Binary::Type type_get() const;
-        const std::vector<uint8_t>& data_get() const;
+        const std::basic_string<uint8_t>& data_get() const;
 
     private:
         std::string get_type_string(Binary::Type) const;
@@ -36,7 +35,7 @@ namespace bson
     private:
         int32_t length_;
         Binary::Type type_;
-        const std::vector<uint8_t> data_;
+        const std::basic_string<uint8_t> data_;
     };
 
     std::ostream& operator<<(std::ostream& ostr, const Binary& bin);

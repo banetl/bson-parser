@@ -2,7 +2,7 @@
 namespace bson
 {
 
-    inline const std::vector<uint8_t>& Binary::data_get() const
+    inline const std::basic_string<uint8_t>& Binary::data_get() const
     {
         return data_;
     }

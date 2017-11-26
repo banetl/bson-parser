@@ -1,7 +1,7 @@
 #pragma once
 
-#include <any>
 #include <iostream>
+#include <memory>
 #include <variant>
 #include <vector>
 
@@ -11,7 +11,7 @@ namespace bson
 {
     class Document
     {
-        using vect_type = std::vector<BaseElement>;
+        using vect_type = std::vector<std::shared_ptr<BaseElement>>;
 
     public:
         Document(int32_t length, const vect_type& list);

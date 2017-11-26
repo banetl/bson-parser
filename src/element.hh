@@ -33,7 +33,7 @@ namespace bson
         // -> types that are hard to print and need a special treatment
         using id_type = std::array<uint8_t, 12>;
         using regex_type = std::pair<std::string, std::string>;
-        using dbptr_type = std::pair<bson::BinString, id_type>;
+        using dbptr_type = std::pair<std::shared_ptr<bson::BinString>, id_type>;
 
     public:
         Element(BaseElement::Type type, const std::string& key, const value& val);

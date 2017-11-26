@@ -21,7 +21,7 @@ namespace bson
              << "\t" "content: " << std::endl;
 
         for (auto i : list_)
-            ostr << "\t\t" << i << std::endl;
+            ostr << "\t\t" << *i << std::endl;
 
         return ostr;
     }

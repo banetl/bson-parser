@@ -7,8 +7,6 @@
 namespace bson
 {
 
-    using terminal = std::variant<int8_t, int32_t, int64_t, uint64_t,
-                                  double, long double>;
 
     /* Possible values of the Element template:
      * - double
@@ -28,12 +26,36 @@ namespace bson
 
     class Parser
     {
+        // Complex types:
+        using id_type = std::array<uint8_t, 12>;
+        using regex_type = std::pair<std::string, std::string>;
+        using dbptr_type = std::pair<std::shared_ptr<bson::BinString>, id_type>;
+
     public:
-        Parser(const std::vector<char>& data);
-        const std::unique_ptr<Document> parse() const;
+        Parser(const std::vector<unsigned char>& data);
+        std::shared_ptr<Document> parse();
 
     private:
-        const std::vector<char> data_;
+        // Terminal
+        // int8_t, int32_t, int64_t, uint64_t, double, long double
+        template <typename t>
+        t parse_terminal();
+
+        template <typename t>
+        std::shared_ptr<Element<t>>
+        parse_and_return(BaseElement::Type type, const std::string key);
+
+        const std::string parse_cstring();
+        const std::basic_string<uint8_t> parse_string(size_t len);
+        std::shared_ptr<BinString> parse_binstring();
+        std::shared_ptr<Binary> parse_binary();
+        std::shared_ptr<BaseElement> parse_element();
+        std::shared_ptr<CodeW> parse_codew();
+
+    private:
+        const std::vector<unsigned char> data_;
         size_t index_;
     };
 }
+
+#include "parser.hxx"

@@ -20,6 +20,7 @@ namespace bson
     template<typename value>
     std::ostream& Element<value>::dump(std::ostream& ostr) const
     {
+        // Replace by BaseElement::dump
         ostr << "Element:" << std::endl
              << "\t" "type: " << this->get_type_string(type_) << std::endl
              << "\t" "key: " << key_ << std::endl;
@@ -37,7 +38,7 @@ namespace bson
         }
         else if constexpr (std::is_same<dbptr_type, value>::value)
         {
-            ostr << "\t" "DBpointer: " << val_.first << "  ";
+            ostr << "\t" "DBpointer: " << *val_.first << "  ";
             for (auto i : val_.second)
                 ostr << i;
             ostr << std::endl;
