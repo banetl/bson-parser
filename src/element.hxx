@@ -28,7 +28,7 @@ namespace bson
         {
             ostr << "value: ";
             for (auto i : val_)
-                ostr << i;
+                ostr << "\\x" << std::hex << +i;
         }
         else if constexpr (std::is_same<regex_type, value>::value)
         {
@@ -39,8 +39,16 @@ namespace bson
         {
             ostr << "DBpointer: " << *val_.first << "\t";
             for (auto i : val_.second)
-                ostr << i;
+                ostr << "\\x" << std::hex << +i;
         }
+        // As the type trait std::is_pointer does not work
+        // with smart pointers it would be better to implement
+        // our own std::is_smart_prt type trait with sfinae instead
+        // of doing this hacky thing:
+        else if constexpr (std::is_same<std::string, value>::value)
+             ostr << "value: " << val_;
+        else if constexpr (std::is_class<value>::value)
+             ostr << "value: " << *val_;
         else
              ostr << "value: " << val_;
         ostr << utils::iendl;

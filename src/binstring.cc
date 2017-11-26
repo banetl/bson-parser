@@ -16,10 +16,12 @@ namespace bson
 
     std::ostream& BinString::dump(std::ostream& ostr) const
     {
-        ostr << "Binary String:"
-             << "\t" "length: "
-             << length_
-             << utils::iendl;
+        ostr << "Binary String:" << utils::incendl
+             << "length: " << +length_ << utils::iendl
+             << "value: ";
+        for (auto i : data_)
+            ostr << "\\x" << std::hex << +i;
+        ostr << utils::decendl;
         return ostr;
     }
 

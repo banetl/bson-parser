@@ -22,9 +22,9 @@ namespace bson
              << "content: " << utils::incendl;
 
         for (auto i : list_)
-            ostr << *i << utils::iendl;
+            ostr << *i;
         // Reset indentation after the document
-        utils::indent(ostr) -= 2;
+        utils::indent(ostr) -= 4;
         ostr << utils::iendl;
         return ostr;
     }
