@@ -10,7 +10,7 @@ namespace bson
         t number = 0;
         std::vector<unsigned char> num(data_.begin() + index_,
                                        data_.begin() + index_ + sizeof(t));
-        std::reverse(std::begin(num), std::end(num));
+//        std::reverse(std::begin(num), std::end(num));
         std::memcpy(&number, &num.front(), sizeof(t));
         index_ += sizeof(t);
         return number;

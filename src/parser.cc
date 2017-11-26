@@ -21,14 +21,16 @@ namespace bson
     {
         auto length = parse_terminal<int32_t>();
         std::vector<std::shared_ptr<BaseElement>> vect;
-        auto last = index_ + length - 1;
+        auto last = index_ + length - sizeof(int32_t) - 1;
 
         while (index_ < last)
             vect.push_back(parse_element());
 
-        if (index_ != last && data_[index_++] != '\x00')
+        if (index_ != last && data_[index_] != '\x00')
             throw std::runtime_error("Bad bson file input");
 
+        // Remove the last '\x00' of the doc:
+        index_++;
         auto doc = Document(length, vect);
         return std::make_shared<Document>(doc);
     }
@@ -165,6 +167,7 @@ namespace bson
             res += data_[index_];
             index_++;
         }
+        res += data_[index_++];
         return res;
     }
 
