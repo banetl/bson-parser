@@ -40,6 +40,9 @@ The usage is:
 ./bson-parser file.bson
 ```
 
+Some bson files are provided in the sample folder. You can use them to test
+the program.
+
 ### Todo
 
 * [ ] Synthetize all types in a global header to make them easily adaptable
