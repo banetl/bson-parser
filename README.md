@@ -71,6 +71,7 @@ the program.
 * [ ] Refactor into multiple folders (ast, parser, utils)
 * [ ] Improve the pretty printing by removing useless lines
 * [ ] Fix endianness for timestamp and counter fields
+* [ ] Do not print the key when the element type is an array (to match other BSON parser)
 
 ## Improvements
 
